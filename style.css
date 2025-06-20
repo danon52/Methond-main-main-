@@ -1,0 +1,310 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 100vh;
+}
+
+.Method {
+    display: flex;
+    justify-content: center;
+    font-size: 96px;
+}
+
+.login {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.text_input {
+    width: 250px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+.log_in {
+    font-size: 22px;
+}
+
+.link_in_login {
+    text-decoration: none;
+    color: black;
+}
+
+.form-container {
+    width: 217px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    height: 24px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.button_1 {
+    width: 100%;
+    height: 32px;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.register-link {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+.register-link a {
+    color: black;
+    text-decoration: none;
+}
+
+.lorem {
+    text-align: center;
+    font-size: 36px;
+}
+
+.Start {
+    width: 200px;
+    height: 100px;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    box-shadow: 5px 5px 9px 10px rgba(1, 1, 1, 1);
+    border: none;
+}
+
+.MAIN {
+    text-decoration: none;
+    color: black;
+}
+
+.first_lesson {
+    display: flex;
+}
+
+.first {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.Full_ryck {
+    font-size: 24px;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+.view_lesson {
+    text-align: center;
+}
+
+.button_to_lesen {
+    width: 173px;
+    height: 96px;
+    background-color: rgba(154, 152, 54, 0.1);
+    border-radius: 20px;
+    border: none;
+    margin-top: 25px;
+    font-size: 24px;
+    box-shadow: 0 1px 3px rgba(2, 2, 2, 2.1);
+}
+
+.testesterone {
+    @font-face {
+        font-family: JetBrains Mono;
+        src: url(fonts/JetBrainsMono-2/);
+    }
+}
+
+.User {
+    display: flex;
+    margin-left: 15px;
+}
+
+.Egorr_lox {
+    margin-top: 15px;
+}
+
+.parents {
+    display: flex;
+    justify-content: center;
+}
+
+.input_1 {
+    text-align: center;
+    width: 150px;
+    height: 25px;
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #4a4a4a;
+}
+
+.lesson-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #4a4a4a;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.lesson-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-number {
+    color: #fca311;
+    font-weight: bold;
+}
+
+h1 {
+    color: #fca311;
+    text-shadow: 0 0 10px rgba(252, 163, 17, 0.3);
+}
+
+h2 {
+    border-left: 4px solid #fca311;
+    padding-left: 15px;
+    margin-top: 30px;
+}
+
+.two_butt {
+    display: flex;
+    justify-content: center;
+    border: wheat;
+    width: 367px;
+    height: 122px;
+    color: #ddd;
+}
+
+.comp {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.a {
+    text-decoration: none;
+    color: white;
+}
+
+.Method1 {
+    display: flex;
+    justify-content: center;
+}
+
+.User_prof {
+    border-color: white;
+    width: 50%;
+    height: 40%;
+}
+
+.egor_lox {
+    color: white;
+}
+
+
+.age {
+    display: flex;
+    color: white;
+}
+
+.king {
+    display: flex;
+    font-size: 22px;
+    color: white;
+}
+
+.Number {
+    display: flex;
+    color: white;
+}
+
+.edit_prof {
+    width: 134px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: dimgrey;
+    box-shadow: 0 1px 3px rgba(1, 1, 1, 1);
+}
+
+.exit {
+    width: 134px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: rgba(243, 14, 14, 0.3);
+    color: white;
+    box-shadow: 0 1px 3px rgba(1, 1, 1, 1);
+}
+
+.parants_butt {
+    display: flex;
+}
+
+.compitichinl {
+    display: flex;
+    justify-content: center;
+}
+
+.dos {
+    margin-top: 20px;
+}
+
+.comph_to_riht {}
+
+.Method_2 {
+    display: flex;
+    justify-content: center;
+    font-size: 66px;
+    color: white;
+}
+.egor_dost {}
+
+.User_prof {
+    display: flex;
+}
+
+.

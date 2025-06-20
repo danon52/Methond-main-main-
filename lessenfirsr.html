@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок JavaScript №1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e1e4e8;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 8px 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .search-bar i {
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .user-profile span {
+            font-weight: 500;
+        }
+
+        .lesson-content {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #34495e;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #3d566e;
+            margin: 20px 0 12px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        ul,
+        ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background-color: #f6f8fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+        }
+
+        pre {
+            background-color: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+
+        .example {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #2980b9;
+        }
+
+        .note {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+        }
+
+        .warning {
+            background-color: #fdecea;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .tasks {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            border-left: 4px solid #27ae60;
+        }
+
+        .tasks h3 {
+            color: #27ae60;
+        }
+
+        .errors {
+            background-color: #f5e8ea;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 25px 0;
+            border-left: 4px solid #c0392b;
+        }
+
+        .errors h3 {
+            color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="search-bar">
+                <i>🔍</i>
+                <input type="text" placeholder="Поиск по урокам...">
+            </div>
+            <div class="user-profile">
+                <a href="User_profil.html"><img src="image/user.png" alt="Профиль"></a>
+
+                <span>Egor Lox</span>
+            </div>
+        </header>
+
+        <div class="lesson-content">
+            <h1>УРОК №1</h1>
+            <h2>&lt;Основы JavaScript&gt;</h2>
+
+            <h3>1.1 Что такое JavaScript и зачем он нужен?</h3>
+
+            <p><strong>JavaScript (JS)</strong> — это динамический язык программирования, который оживляет веб страницы,
+                делая их интерактивными и функциональными.</p>
+
+            <p><strong>Где применяется JavaScript?</strong></p>
+
+            <ol>
+                <li><strong>Веб-разработка:</strong>
+                    <ol type="a">
+                        <li>Добавление интерактивности на сайты (анимации, формы, всплывающие окна).</li>
+                        <li>Создание одностраничных приложений (SPA) с использованием фреймворков: React, Angular, Vue.
+                        </li>
+                        <li>Взаимодействие с API (получение данных с серверов).</li>
+                    </ol>
+                </li>
+                <li><strong>Серверная разработка:</strong>
+                    <ol type="a">
+                        <li>С помощью Node.js можно разрабатывать backend–приложения.</li>
+                        <li>Создание REST API и веб-серверов.</li>
+                    </ol>
+                </li>
+                <li><strong>Мобильные и десктопные приложения:</strong>
+                    <ol type="a">
+                        <li>React Native, (price для мобильных приложений).</li>
+                        <li>Electron (для десктопных приложений).</li>
+                    </ol>
+                </li>
+            </ol>
+
+            <p><strong>Как работает JavaScript в браузере?</strong></p>
+
+            <p>Когда браузер загружает HTML-страницу, происходит следующее:</p>
+
+            <ol>
+                <li>Создаётся DOM (Document Object Model) — дерево объектов страницы.</li>
+                <li>JavaScript получает доступ к DOM и может:
+                    <ol type="a">
+                        <li>Изменять содержимое страницы.</li>
+                        <li>Менять стили элементов.</li>
+                        <li>Реагировать на действия пользователя.</li>
+                    </ol>
+                </li>
+            </ol>
+
+            <div class="example">
+                <p><strong>Пример простой HTML-страницы с JS:</strong></p>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Моя страница&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button id="myButton"&gt;Нажми меня&lt;/button&gt;
+    &lt;script&gt;
+        document.getElementById("myButton").addEventListener("click", function() {
+            alert("Кнопка была нажата");
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <h3>1.2 Первая программа: подробный разбор</h3>
+
+            <h4>1. console.log() — вывод в консоль</h4>
+
+            <pre><code>console.log("Это сообщение появится в консоли");
+
+console.log(2 + 2); // Можно выводить результаты вычислений
+
+console.log("Текст", {объект: "значение"}, ["массив"]);</code></pre>
+
+            <p><strong>Как открыть консоль?</strong></p>
+            <ul>
+                <li>Chrome/Firefox: Нажмите F12 → перейдите на вкладку "Console".</li>
+                <li>Safari: Используйте комбинацию Cmd+Opt+C.</li>
+            </ul>
+
+            <h4>2. alert() — всплывающее окно</h4>
+
+            <pre><code>alert("Это модальное окно блокирует работу страницы");</code></pre>
+
+            <div class="note">
+                <p><strong>Особенности:</strong></p>
+                <ul>
+                    <li>Блокирует выполнение кода до тех пор, пока пользователь не закроет окно.</li>
+                    <li>Используется для важных уведомлений.</li>
+                </ul>
+            </div>
+
+            <h4>3. document.write() — запись в документ</h4>
+
+            <pre><code>document.write("&lt;h1&gt;Заголовок&lt;/h1&gt;");</code></pre>
+
+            <div class="warning">
+                <p><strong>Важно:</strong> Этот метод перезаписывает весь документ, если вызвать его после загрузки
+                    страницы!</p>
+            </div>
+
+            <h3>1.3 Переменные: полное руководство</h3>
+            <h4>Типы объявления переменных</h4>
+
+            <ol>
+                <li><strong>let</strong> — переменная, которую можно изменять:
+                    <pre><code>let counter = 0;
+counter = 1; // Можно изменить</code></pre>
+                </li>
+                <li><strong>const</strong> — константа (нельзя изменить после объявления):
+                    <pre><code>const PI = 3.14;
+// PI = 3.15; // Ошибка!</code></pre>
+                </li>
+                <li><strong>var</strong> — устаревший способ (имеет проблемы с областью видимости):
+                    <pre><code>var old = "Не рекомендуется";</code></pre>
+                </li>
+            </ol>
+
+            <h4>Области видимости переменных</h4>
+
+            <pre><code>let globalVar = "Я глобальная"; // Видна везде
+
+function test() {
+    let localVar = "Я локальная"; // Видна только в функции
+    console.log(globalVar); // Работает
+}
+
+console.log(localVar); // Ошибка!</code></pre>
+
+            <h4>Типы данных в JavaScript</h4>
+            <p><strong>Примитивные типы:</strong></p>
+
+            <ol>
+                <li><strong>Number</strong> — числа (целые и дробные):
+                    <pre><code>let num = 42;
+let float = 3.14;</code></pre>
+                </li>
+                <li><strong>String</strong> — строки:
+                    <pre><code>let str1 = 'Одинарные кавычки';
+let str2 = "Двойные кавычки";
+let str3 = `Шаблонные строки ${num}`; // Можно вставлять переменные</code></pre>
+                </li>
+                <li><strong>Boolean</strong> — логические значения:
+                    <pre><code>let isTrue = true;
+let isFalse = false;</code></pre>
+                </li>
+                <li><strong>null</strong> — явное отсутствие значения:
+                    <pre><code>let empty = null;</code></pre>
+                </li>
+                <li><strong>undefined</strong> — значение не определено:
+                    <pre><code>let undef;
+console.log(undef); // undefined</code></pre>
+                </li>
+            </ol>
+
+            <p><strong>ОБЪЕКТНЫЕ ТИПЫ:</strong></p>
+
+            <ol>
+                <li><strong>Object</strong> — коллекция свойств:
+                    <pre><code>let user = {
+    name: "Иван",
+    age: 30
+};</code></pre>
+                </li>
+                <li><strong>Array</strong> — массив:
+                    <pre><code>let colors = ["красный", "зелёный", "синий"];</code></pre>
+                </li>
+                <li><strong>Function</strong> — функции:
+                    <pre><code>function greet() {
+    console.log("Привет!");
+}</code></pre>
+                </li>
+            </ol>
+
+            <h4>Динамическая типизация</h4>
+
+            <p>JavaScript — язык с динамической типизацией. Тип переменной определяется автоматически:</p>
+
+            <pre><code>let x = 42; // Сейчас x — число
+x = "Теперь строка"; // Теперь x — строка
+x = true; // Теперь логическое значение</code></pre>
+
+            <div class="tasks">
+                <h3>Практические задания:</h3>
+                <ol>
+                    <li>Создайте переменные для хранения:
+                        <ul>
+                            <li>Вашего имени.</li>
+                            <li>Вашего возраста.</li>
+                            <li>Любимого цвета.</li>
+                        </ul>
+                        Выведите их значения в консоль.
+                    </li>
+                    <li>Напишите программу, которая:
+                        <ul>
+                            <li>Запрашивает имя пользователя через prompt().</li>
+                            <li>Выводит приветствие в консоль и через alert().</li>
+                        </ul>
+                    </li>
+                    <li>Поэкспериментируйте с разными типами данных:
+                        <ul>
+                            <li>Создайте объект с информацией о книге.</li>
+                            <li>Создайте массив любимых фильмов.</li>
+                            <li>Попробуйте сложить число и строку — что получится?</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="errors">
+                <h3>Частые ошибки новичков</h3>
+                <ol>
+                    <li>Путаница между = и ===:
+                        <ul>
+                            <li>= — оператор присваивания.</li>
+                            <li>=== — строгое сравнение.</li>
+                        </ul>
+                    </li>
+                    <li>Неиспользование const для констант:
+                        <p>Всегда используйте const, если значение не должно меняться.</p>
+                    </li>
+                    <li>Отсутствие точки с запятой:
+                        <p>Хотя JavaScript допускает их отсутствие, лучше их ставить для избежания ошибок.</p>
+                    </li>
+                    <li>Использование зарезервированных слов:
+                        <pre><code>let let = 5; // Ошибка!</code></pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

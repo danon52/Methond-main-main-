@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: DOM и работа с веб-страницами</title>
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body>
+    <div class="lesson-container">
+        <header class="lesson-header">
+            <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="margin-right: 8px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" placeholder="Поиск по урокам...">
+            </div>
+            <div class="user-profile">
+                <img src="image/user.png" alt="Аватар" class="avatar">
+                <span>Иван Петров</span>
+            </div>
+        </header>
+
+        <main class="lesson-content">
+            <h1>УРОК №5: DOM и работа с веб-страницами</h1>
+            
+            <p><strong>DOM (Document Object Model)</strong> — это программный интерфейс для HTML и XML документов, который представляет страницу в виде дерева объектов. JavaScript может взаимодействовать с DOM для изменения структуры, стиля и содержимого веб-страницы.</p>
+            
+            <h2>5.1 Что такое DOM-дерево</h2>
+            
+            <h3>Основные понятия DOM</h3>
+            <p>DOM представляет документ как дерево узлов:</p>
+            <ul>
+                <li><strong>Документ</strong> - корневой узел</li>
+                <li><strong>Элементы</strong> - HTML-теги (например, &lt;div&gt;, &lt;p&gt;)</li>
+                <li><strong>Текстовые узлы</strong> - текст внутри элементов</li>
+                <li><strong>Атрибуты</strong> - свойства элементов (например, class, id)</li>
+            </ul>
+            
+            <div class="interactive-demo">
+                <h4>Пример HTML-структуры:</h4>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Моя страница&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Привет, мир!&lt;/h1&gt;
+  &lt;p&gt;Это параграф&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                
+                <h4>Соответствующее DOM-дерево:</h4>
+                <div class="diagram">Документ
+└── html
+    ├── head
+    │   └── title
+    │       └── "Моя страница"
+    └── body
+        ├── h1
+        │   └── "Привет, мир!"
+        └── p
+            └── "Это параграф"</div>
+            </div>
+            
+            <h3>Навигация по DOM</h3>
+            <p>Основные свойства для навигации:</p>
+            <pre><code>// Доступ к основным элементам
+document.documentElement // &lt;html&gt;
+document.head           // &lt;head&gt;
+document.body           // &lt;body&gt;
+
+// Получаем элемент
+const element = document.querySelector('p');
+
+// Навигация по узлам
+element.parentNode      // Родительский узел
+element.childNodes      // Дочерние узлы (включая текстовые)
+element.children        // Только дочерние элементы
+element.firstChild      // Первый дочерний узел
+element.lastChild       // Последний дочерний узел
+element.previousSibling // Предыдущий соседний узел
+element.nextSibling     // Следующий соседний узел</code></pre>
+            
+            <div class="note">
+                <p><strong>Примечание:</strong> <code>childNodes</code> возвращает все узлы, включая текстовые, а <code>children</code> возвращает только элементы.</p>
+            </div>
+            
+            <h2>5.2 Поиск и изменение элементов</h2>
+            
+            <h3>Поиск элементов</h3>
+            <p>Основные методы поиска:</p>
+            <pre><code>// Современные методы (рекомендуется)
+document.querySelector('.class') // Находит первый элемент с классом
+document.querySelector('#id')    // Находит элемент по ID
+document.querySelector('div')    // Находит первый div
+document.querySelectorAll('.class') // Находит все элементы (NodeList)
+
+// Устаревшие методы (но все еще используются)
+document.getElementById('id')
+document.getElementsByClassName('class') // HTMLCollection
+document.getElementsByTagName('div')    // HTMLCollection</code></pre>
+            
+            <div class="warning">
+                <p><strong>Важно:</strong> <code>querySelectorAll</code> возвращает статическую NodeList, а методы <code>getElementsBy*</code> возвращают "живые" коллекции, которые автоматически обновляются при изменении DOM.</p>
+            </div>
+            
+            <h3>Изменение элементов</h3>
+            <pre><code>const elem = document.querySelector('#myElement');
+
+// Изменение содержимого
+elem.textContent = 'Новый текст'; // Без интерпретации HTML
+elem.innerHTML = '&lt;strong&gt;Жирный&lt;/strong&gt; текст'; // С интерпретацией HTML
+
+// Работа с атрибутами
+elem.setAttribute('title', 'Подсказка');
+elem.getAttribute('title'); // "Подсказка"
+elem.removeAttribute('title');
+
+// Управление классами
+elem.classList.add('new-class');
+elem.classList.remove('old-class');
+elem.classList.toggle('active');
+elem.classList.contains('active'); // true/false
+
+// Изменение стилей
+elem.style.color = 'red';
+elem.style.backgroundColor = '#f0f0f0';
+elem.style.marginTop = '10px';</code></pre>
+            
+            <h3>Создание и удаление элементов</h3>
+            <pre><code>// Создание нового элемента
+const newDiv = document.createElement('div');
+newDiv.textContent = 'Я новый div';
+
+// Добавление в DOM
+document.body.appendChild(newDiv); // В конец body
+elem.parentNode.insertBefore(newDiv, elem); // Перед определенным элементом
+
+// Клонирование элемента
+const clonedElem = elem.cloneNode(true); // true - глубокое копирование
+
+// Удаление элемента
+elem.remove(); // Современный способ
+elem.parentNode.removeChild(elem); // Старый способ</code></pre>
+            
+            <div class="task">
+                <h3>Практическое задание</h3>
+                <ol>
+                    <li>Создайте HTML-страницу с несколькими элементами (заголовки, параграфы, кнопки)</li>
+                    <li>Используя JavaScript:
+                        <ul>
+                            <li>Найдите все элементы с определенным классом</li>
+                            <li>Измените текст одного из элементов</li>
+                            <li>Добавьте новый элемент в DOM</li>
+                            <li>Удалите один из существующих элементов</li>
+                        </ul>
+                    </li>
+                    <li>Создайте функцию, которая будет изменять стили элементов при нажатии на кнопку</li>
+                </ol>
+            </div>
+             
+            <h2>5.3 События и обработчики</h2>
+            
+            <h3>Основы событий DOM</h3>
+            <p>События - это действия или происшествия, которые случаются в системе, о которых можно узнать и на которые можно реагировать.</p>
+            
+            <div class="interactive-demo">
+                <div class="demo-controls">
+                    <button id="demoBtn1">Кнопка 1 (onclick)</button>
+                    <button id="demoBtn2">Кнопка 2 (addEventListener)</button>
+                </div>
+                <div id="demoOutput">Здесь будет результат...</div>
+            </div>
+            
+            <pre><code>const button = document.querySelector('button');
+
+// Способ 1: через атрибут onclick (не рекомендуется)
+&lt;button onclick="alert('Клик!')"&gt;Нажми меня&lt;/button&gt;
+
+// Способ 2: через свойство элемента
+button.onclick = function() {
+  console.log('Клик 1');
+};
+
+// Способ 3: addEventListener (рекомендуется)
+button.addEventListener('click', function(event) {
+  console.log('Клик 2', event);
+});
+
+// Удаление обработчика
+const handler = function() { console.log('Клик 3'); };
+button.addEventListener('click', handler);
+button.removeEventListener('click', handler);</code></pre>
+            
+           
+            
+            <h2>5.4 Практика: Интерактивный список дел</h2>
+            
+            <div class="interactive-demo">
+                <h3>Todo List Demo</h3>
+                <input type="text" id="todoInput" placeholder="Новая задача">
+                <button id="addTodoBtn">Добавить</button>
+                <ul id="todoList"></ul>
+            </div>
+            
+            <pre><code>// Базовая реализация Todo List
+class TodoApp {
+  constructor() {
+    this.tasks = [];
+    this.taskList = document.getElementById('todoList');
+    this.setupEvents();
+  }
+  
+  setupEvents() {
+    document.getElementById('addTodoBtn').addEventListener('click', () => {
+      const input = document.getElementById('todoInput');
+      if (input.value.trim()) {
+        this.addTask(input.value.trim());
+        input.value = '';
+      }
+    });
+  }
+  
+  addTask(text) {
+    const task = {
+      id: Date.now(),
+      text,
+      completed: false
+    };
+    this.tasks.push(task);
+    this.renderTasks();
+  }
+  
+  renderTasks() {
+    this.taskList.innerHTML = '';
+    this.tasks.forEach(task => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        &lt;input type="checkbox" ${task.completed ? 'checked' : ''}&gt;
+        &lt;span&gt;${task.text}&lt;/span&gt;
+        &lt;button&gt;×&lt;/button&gt;
+      `;
+      this.taskList.appendChild(li);
+    });
+  }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => new TodoApp());</code></pre>
+            
+            <div class="task">
+                <h3>Дополнительные задания</h3>
+                <ol>
+                    <li>Добавьте возможность редактирования задач</li>
+                    <li>Реализуйте сортировку задач по дате создания</li>
+                    <li>Добавьте категории/теги для задач</li>
+                    <li>Сделайте возможность перетаскивания задач (drag and drop)</li>
+                    <li>Добавьте анимации при добавлении/удалении задач</li>
+                </ol>
+            </div>
+        </main>
+    </div>
+
+    <script>
+       
+        document.addEventListener('DOMContentLoaded', function() {
+         
+            const demoBtn1 = document.getElementById('demoBtn1');
+            const demoBtn2 = document.getElementById('demoBtn2');
+            const demoOutput = document.getElementById('demoOutput');
+            
+            demoBtn1.onclick = function() {
+                demoOutput.textContent = 'Вы нажали кнопку 1 (обработчик через onclick)';
+            };
+            
+            demoBtn2.addEventListener('click', function() {
+                demoOutput.textContent = 'Вы нажали кнопку 2 (обработчик через addEventListener)';
+            });
+            
+           
+            class TodoApp {
+                constructor() {
+                    this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                    this.taskList = document.getElementById('todoList');
+                    this.setupEvents();
+                    this.renderTasks();
+                }
+                
+                setupEvents() {
+                    document.getElementById('addTodoBtn').addEventListener('click', () => {
+                        const input = document.getElementById('todoInput');
+                        const text = input.value.trim();
+                        if (text) {
+                            this.addTask(text);
+                            input.value = '';
+                            input.focus();
+                        }
+                    });
+                    
+                    document.getElementById('todoInput').addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            document.getElementById('addTodoBtn').click();
+                        }
+                    });
+                }
+                
+                addTask(text) {
+                    const task = {
+                        id: Date.now(),
+                        text,
+                        completed: false,
+                        createdAt: new Date()
+                    };
+                    this.tasks.push(task);
+                    this.saveTasks();
+                    this.renderTasks();
+                }
+                
+                toggleTask(id) {
+                    const task = this.tasks.find(t => t.id === id);
+                    if (task) {
+                        task.completed = !task.completed;
+                        this.saveTasks();
+                        this.renderTasks();
+                    }
+                }
+                
+                deleteTask(id) {
+                    this.tasks = this.tasks.filter(t => t.id !== id);
+                    this.saveTasks();
+                    this.renderTasks();
+                }
+                
+                saveTasks() {
+                    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+                }
+                
+                renderTasks() {
+                    this.taskList.innerHTML = '';
+                    this.tasks.forEach(task => {
+                        const li = document.createElement('li');
+                        li.className = 'todo-item';
+                        li.innerHTML = `
+                            <input type="checkbox" ${task.completed ? 'checked' : ''}>
+                            <span class="${task.completed ? 'completed' : ''}">${task.text}</span>
+                            <button class="delete-btn">×</button>
+                        `;
+                        
+                     
+                        const checkbox = li.querySelector('input');
+                        checkbox.addEventListener('change', () => this.toggleTask(task.id));
+                        
+                        const deleteBtn = li.querySelector('button');
+                        deleteBtn.addEventListener('click', () => this.deleteTask(task.id));
+                        
+                        this.taskList.appendChild(li);
+                    });
+                }
+            }
+            
+       
+            new TodoApp();
+        });
+    </script>
+</body>
+</html>

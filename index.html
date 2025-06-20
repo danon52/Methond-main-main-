@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <style>
+       body {
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: rgb(255, 255, 255);
+            min-height: 100vh;
+        }
+        label{
+            color: rgb(255, 255, 255);
+        }
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;}
+
+        .button_1 {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;}
+        .MAIN{
+            color: rgb(255, 255, 255);
+        }
+      
+    </style>
+    <div>
+        <p class="Method"> Method
+            <img class="img" src="image/Javascript.svg" alt="">
+        </p>
+    </div>
+    <!-- <form>
+        <div class="login">
+            <div>
+                <p class="log_in">Имя пользователя </p>
+                <input class="text_input" type="text">
+            </div>
+            <div>
+                <p class="log_in">Пароль</p>
+                <input class="text_input" type="text">
+            </div>
+            <div class="no">
+                <button class="log_in_to_site">Войти</button>
+                <div>
+                    <a class="link_in_login" href="#">у меня нет аккаунта!</a>
+                </div>
+            </div>
+    </form> -->
+    <div class="form-container">
+        <div class="input-group">
+            <label>Имя пользователя</label>
+            <input type="text" style="width: 217px; height: 24px;background-color: #b8bcc7;">
+        </div>
+        <div class="input-group">
+            <label>Пароль</label>
+            <input type="password" style="width: 217px; height: 24px; background-color: #b8bcc7;">
+        </div>
+        <button class="button_1"> <a class="MAIN" href="main_file.html">Войти</a></button>
+
+        <!-- <button type="button"> <a class="button">Войти</a></button> -->
+
+        <div class="register-link">
+         <a href="new_user.html"> у меня нет аккаунта!</a>
+        </div>
+    </div>
+
+    </div>
+    <script src="vxod.js"></script>
+</body>
+
+</html>

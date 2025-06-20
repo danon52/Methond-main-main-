@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Урок 7: Современный JavaScript (ES6+)</title>
+  <link rel="stylesheet" href="style7.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="search-bar">
+        <i>🔍</i>
+        <input type="text" placeholder="Поиск по урокам...">
+      </div>
+      <div class="user-profile">
+        <img src="image/user.png" alt="Профиль">
+        <span>Иван Петров</span>
+      </div>
+    </header>
+
+    <div class="lesson-content">
+      <h1>УРОК №7: Современный JavaScript (ES6+) - Полное руководство</h1>
+
+      <h2>Введение в современный JavaScript</h2>
+      <p>ECMAScript 2015 (ES6) и последующие версии принесли множество новых возможностей в JavaScript, которые делают
+        код более выразительным, компактным и удобным для работы.</p>
+
+      <h3>7.1 Стрелочные функции</h3>
+      <h4>Основы стрелочных функций</h4>
+      <p>Стрелочные функции предоставляют краткий синтаксис для написания функций.</p>
+
+      <pre><code>// Обычная функция
+function sum(a, b) {
+  return a + b;
+}
+
+// Стрелочная функция
+const sum = (a, b) => {
+  return a + b;
+};
+
+// Еще короче (неявный return)
+const sum = (a, b) => a + b;</code></pre>
+
+      <h4>Особенности стрелочных функций</h4>
+      <ul>
+        <li>Нет своего this - используют this окружающего контекста</li>
+        <li>Не могут быть использованы как конструкторы</li>
+        <li>Нет объекта arguments</li>
+        <li>Короткий синтаксис для возврата объектов</li>
+      </ul>
+
+      <pre><code>// Возврат объекта
+const createUser = (name, age) => ({ name, age });
+
+// Обработка событий (сохраняется контекст)
+button.addEventListener('click', () => {
+  console.log(this); // Не button, а контекст, где определена стрелочная функция
+});
+
+// Отсутствие arguments
+const showArgs = (...args) => console.log(args);
+showArgs(1, 2, 3); // [1, 2, 3]</code></pre>
+
+      <h4>Когда использовать стрелочные функции</h4>
+      <p><span class="checkmark">✔️</span> Колбэки и анонимные функции<br>
+        <span class="checkmark">✔️</span> Короткие однострочные функции<br>
+        <span class="checkmark">✔️</span> Когда нужно сохранить контекст this
+      </p>
+
+      <pre><code>// Пример с массивом
+const numbers = [1, 2, 3];
+const squares = numbers.map(n => n * n); // [1, 4, 9]
+
+// Пример с промисами
+fetchData()
+  .then(data => processData(data))
+  .catch(error => console.error(error));</code></pre>
+
+      <h3>7.2 Деструктуризация</h3>
+      <h4>Деструктуризация объектов</h4>
+      <p>Позволяет извлекать значения из объектов в отдельные переменные.</p>
+
+      <pre><code>const user = {
+  id: 1,
+  name: 'Алексей',
+  age: 30,
+  address: {
+    city: 'Москва',
+    street: 'Ленина'
+  }
+};
+
+// Базовый вариант
+const { name, age } = user;
+console.log(name, age); // 'Алексей' 30
+
+// С переименованием
+const { name: userName, age: userAge } = user;
+
+// Значения по умолчанию
+const { name, isAdmin = false } = user;
+
+// Вложенная деструктуризация
+const { address: { city } } = user;
+console.log(city); // 'Москва'
+
+// В параметрах функции
+function printUser({ name, age }) {
+  console.log(`${name}, ${age} лет`);
+}
+printUser(user); // 'Алексей, 30 лет'</code></pre>
+
+      <h4>Деструктуризация массивов</h4>
+      <pre><code>const numbers = [1, 2, 3, 4, 5];
+
+const [first, second] = numbers;
+console.log(first, second); // 1 2
+
+// Пропуск элементов
+const [first, , third] = numbers; // 1 3
+
+// Остаточные параметры
+const [first, ...rest] = numbers; // 1 [2, 3, 4, 5]
+
+// Обмен значений
+let a = 1, b = 2;
+[a, b] = [b, a]; // a=2, b=1</code></pre>
+
+      <h4>Практическое применение</h4>
+      <pre><code>// Работа с API
+async function fetchUser() {
+  const response = await fetch('/api/user');
+  const { data: user } = await response.json();
+  return user;
+}
+
+// Импорт модулей
+const { useState, useEffect } = React;
+
+// Возврат нескольких значений
+function getStats(numbers) {
+  return {
+    min: Math.min(...numbers),
+    max: Math.max(...numbers),
+    avg: numbers.reduce((a, b) => a + b) / numbers.length
+  };
+}
+
+const { max } = getStats([1, 2, 3]);</code></pre>
+
+      <h3>7.3 Модули и import/export</h3>
+      <h4>Система модулей ES6</h4>
+      <p>Модули позволяют разбивать код на отдельные файлы с четко определенными зависимостями.</p>
+
+      <div class="example">
+        <p><strong>Пример структуры проекта:</strong></p>
+        <pre><code>src/
+  ├── utils/
+  │   ├── math.js
+  │   └── string.js
+  ├── components/
+  │   ├── header.js
+  │   └── footer.js
+  └── app.js</code></pre>
+      </div>
+
+      <h4>Экспорт (export)</h4>
+      <pre><code>// math.js - именованный экспорт
+export const sum = (a, b) => a + b;
+export const PI = 3.14159;
+
+// Или групповой экспорт
+const multiply = (a, b) => a * b;
+const square = x => x * x;
+
+export { multiply, square };
+
+// Экспорт по умолчанию (только один на модуль)
+export default function(x) {
+  return x * x * x;
+}</code></pre>
+
+      <h4>Импорт (import)</h4>
+      <pre><code>// Импорт именованных экспортов
+import { sum, PI } from './math.js';
+
+// Импорт с переименованием
+import { sum as add, PI } from './math.js';
+
+// Импорт всего модуля в объект
+import * as math from './math.js';
+math.sum(2, 3);
+
+// Импорт экспорта по умолчанию
+import cube from './math.js'; // Имя может быть любым
+
+// Комбинированный импорт
+import cube, { sum, PI } from './math.js';
+
+// Импорт только для побочных эффектов
+import './styles.css';</code></pre>
+
+      <h4>Динамический импорт</h4>
+      <p>Позволяет загружать модули по требованию.</p>
+
+      <pre><code>// Загрузка по требованию
+button.addEventListener('click', async () => {
+  const module = await import('./dialog.js');
+  module.showDialog('Привет!');
+});
+
+// С условием
+if (user.isAdmin) {
+  import('./admin-panel.js');
+}</code></pre>
+
+      <h4>Практические рекомендации</h4>
+      <ul>
+        <li>Организация кода: Группируйте связанные функции в модули</li>
+        <li>Именование: Используйте осмысленные имена для экспортов</li>
+        <li>Размер модулей: Не делайте модули слишком большими</li>
+        <li>Циклические зависимости: Избегайте их, они усложняют понимание кода</li>
+      </ul>
+
+      <h3>7.4 Практика: Рефакторинг кода</h3>
+      <h4>Пример кода до рефакторинга</h4>
+      <pre><code>// userService.js
+function getUser(id, callback) {
+  fetch('/users/' + id)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(user) {
+      callback(null, user);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
+function getUsers(callback) {
+  fetch('/users')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(users) {
+      callback(null, users);
+    })
+    .catch(function(error) {
+      callback(error);
+    });
+}
+
+// app.js
+var userId = 1;
+var isAdmin = false;
+
+getUser(userId, function(error, user) {
+  if (error) {
+    console.error('Ошибка:', error);
+    return;
+  }
+  
+  console.log('Пользователь:', user);
+  
+  if (isAdmin) {
+    getUsers(function(error, users) {
+      if (error) {
+        console.error('Ошибка:', error);
+        return;
+      }
+      
+      console.log('Все пользователи:', users);
+    });
+  }
+});</code></pre>
+
+      <h4>Рефакторинг с использованием ES6+</h4>
+      <pre><code>// userService.js
+export async function getUser(id) {
+  const response = await fetch(`/users/${id}`);
+  if (!response.ok) throw new Error('Ошибка загрузки пользователя');
+  return response.json();
+}
+
+export async function getUsers() {
+  const response = await fetch('/users');
+  if (!response.ok) throw new Error('Ошибка загрузки пользователей');
+  return response.json();
+}
+
+// app.js
+import { getUser, getUsers } from './userService.js';
+
+const userId = 1;
+const isAdmin = false;
+
+async function loadUserData() {
+  try {
+    const user = await getUser(userId);
+    console.log('Пользователь:', user);
+    
+    if (isAdmin) {
+      const users = await getUsers();
+      console.log('Все пользователи:', users);
+    }
+  } catch (error) {
+    console.error('Ошибка:', error.message);
+  }
+}
+
+loadUserData();</code></pre>
+
+      <h4>Дополнительные улучшения</h4>
+      <p>Конфигурация API:</p>
+      <pre><code>// config.js
+export const API_BASE_URL = 'https://api.example.com/v1';
+export const DEFAULT_TIMEOUT = 5000;</code></pre>
+
+      <p>Улучшенный сервис пользователей:</p>
+      <pre><code>// apiService.js
+import { API_BASE_URL, DEFAULT_TIMEOUT } from './config.js';
+
+async function request(endpoint, options = {}) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT);
+  
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      ...options,
+      signal: controller.signal
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return response.json();
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+export const getUser = id => request(`/users/${id}`);
+export const getUsers = () => request('/users');</code></pre>
+
+      <p>Использование деструктуризации:</p>
+      <pre><code>// app.js
+async function displayUser({ name, email, address: { city } }) {
+  console.log(`Имя: ${name}`);
+  console.log(`Email: ${email}`);
+  console.log(`Город: ${city}`);
+}
+
+// Использование
+const user = await getUser(1);
+displayUser(user);</code></pre>
+
+      <div class="tasks">
+        <h3>Дополнительные задания</h3>
+        <ol>
+          <li>Добавьте обработку ошибок с разными HTTP-статусами</li>
+          <li>Реализуйте кэширование запросов</li>
+          <li>Добавьте возможность отмены запросов</li>
+          <li>Создайте модуль для работы с localStorage</li>
+          <li>Реализуйте пагинацию для списка пользователей</li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <h3>Дополнительные материалы</h3>
+        <h4>Современные циклы и итераторы</h4>
+        <pre><code>// for...of для массивов
+const numbers = [1, 2, 3];
+for (const num of numbers) {
+  console.log(num);
+}
+
+// for...in для объектов (не рекомендуется для массивов)
+const obj = { a: 1, b: 2 };
+for (const key in obj) {
+  console.log(key, obj[key]);
+}
+
+// Современные методы массивов
+const doubled = numbers.map(n => n * 2);
+const evens = numbers.filter(n => n % 2 === 0);
+const sum = numbers.reduce((total, n) => total + n, 0);</code></pre>
+
+        <h4>Шаблонные строки (Template literals)</h4>
+        <pre><code>const name = 'Алексей';
+const age = 30;
+
+// Многострочные строки
+const message = `Привет, ${name}!
+Тебе ${age} лет.`;
+
+// Вложенные выражения
+const isAdult = age >= 18;
+console.log(`${name} ${isAdult ? 'совершеннолетний' : 'несовершеннолетний'}`);
+
+// Тегированные шаблоны
+function highlight(strings, ...values) {
+  return strings.reduce((result, str, i) => 
+    `${result}${str}<span class="highlight">${values[i] || ''}</span>`, '');
+}
+
+const highlighted = highlight`Привет, ${name}! Тебе ${age} лет.`;</code></pre>
+
+        <h4>Операторы rest и spread</h4>
+        <pre><code>// rest - сбор аргументов
+function sum(...numbers) {
+  return numbers.reduce((total, n) => total + n, 0);
+}
+
+// spread - "распаковка"
+const nums = [1, 2, 3];
+console.log(Math.max(...nums)); // 3
+
+// Копирование объектов
+const original = { a: 1, b: 2 };
+const copy = { ...original };
+
+// Объединение объектов
+const defaults = { color: 'red', size: 'medium' };
+const userSettings = { size: 'large' };
+const finalSettings = { ...defaults, ...userSettings }; // {color: "red", size: "large"}</code></pre>
+      </div>
+
+      <h2>Заключение</h2>
+      <p>В этом уроке мы рассмотрели:</p>
+      <ul>
+        <li>Стрелочные функции и их особенности</li>
+        <li>Деструктуризацию объектов и массивов</li>
+        <li>Систему модулей ES6 и работу с import/export</li>
+        <li>Практический рефакторинг кода с использованием современных возможностей</li>
+        <li>Дополнительные возможности ES6+</li>
+      </ul>
+
+      <p>Современный JavaScript предоставляет множество инструментов для написания чистого, модульного и поддерживаемого
+        кода. Использование этих возможностей делает разработку более эффективной и приятной.</p>
+
+      <p><strong>Готовы к УРОКУ №8: Работа с браузерными API?</strong> 🚀</p>
+    </div>
+  </div>
+</body>
+
+</html>

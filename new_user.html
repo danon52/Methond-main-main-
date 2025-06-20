@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: 
+            linear-gradient(-45deg, #fffffff6, rgb(61, 161, 255),#8234fff6, rgb(47, 0, 255),#0004fff6, rgb(255, 255, 255));
+            background-size: 400% 400%;
+            height: 100vh;
+            min-height: 100vh;
+            animation: gradient 20s ease infinite;
+        }
+        @keyframes gradient{
+            0%{
+                background-position: 0% 50%;
+            }
+            50%{
+                background-position: 100% 50%;
+            }
+            100%{
+                background-position: 0% 50%;
+            }
+        }
+        .fon{
+            font-family: "Segoe UI", sans-serif;
+        }
+        label {
+            color: white; 
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            background-color: #b8bcc7;
+            border: none;
+            border-radius: 4px;
+        }
+        .button_1 {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .Method {
+            text-align: center;
+            font-size: 90px;
+            margin-top: 60px;
+        }
+        
+    </style>
+</head>
+<div class="fon">
+<body>
+    <div>
+        <p class="Method"> Method
+            <img class="img" src="image/Javascript.svg" alt="">
+        </p>
+    </div>
+    <div class="form-container">
+        <div class="input-group">
+            <label>Логин</label>
+            <input type="text" id="login" placeholder="Введите логин">
+        </div>
+        <div class="input-group">
+            <label>Имя пользователя</label>
+            <input type="text" id="name" placeholder="Введите имя">
+        </div>
+        <div class="input-group">
+            <label>Пароль</label>
+            <input type="password" id="password" placeholder="Введите пароль">
+        </div>
+        <button class="button_1" type="button" id="submit">Зарегистрироваться</button>
+        <p id="error" style="color: red; margin-top: 10px;"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</div>
+</html>
